@@ -36,8 +36,5 @@ public class CallbackTest {
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79999999999");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-
-        String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
-        System.out.println(text);
     }
 }
