@@ -1,4 +1,5 @@
 package ru.netology.web;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,8 +13,8 @@ public class CallbackTest {
     private WebDriver driver;
 
     @BeforeAll
-    static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+    public static void setupAll() {
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
@@ -30,10 +31,13 @@ public class CallbackTest {
     @Test
     void shouldTestCallback() throws InterruptedException {
         driver.get("http://localhost:9999");
+
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Василий");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79999999999");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        Thread.sleep(5000);
+
+        String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        System.out.println(text);
     }
 }
