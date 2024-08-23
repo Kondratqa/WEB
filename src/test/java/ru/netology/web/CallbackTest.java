@@ -21,20 +21,18 @@ public class CallbackTest {
 
     @BeforeAll
     public static void setupAll() {
+        WebDriverManager.chromedriver().setup();
+    }
+    @BeforeEach
+    void setup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         options.addArguments("--disable-dev-shm-usage");
 
+        driver = new ChromeDriver(options);
 
-        WebDriverManager.chromedriver().setup();
     }
-
-    @BeforeEach
-    void setup() {
-        driver = new ChromeDriver();
-    }
-
     @AfterEach
     void teardown() {
         driver.quit();
