@@ -28,12 +28,12 @@ public class CallbackTest {
     }
     @BeforeEach
     void setup() {
-       // ChromeOptions options = new ChromeOptions();
-       // options.addArguments("--no-sandbox");
-       // options.addArguments("--headless");
-       // options.addArguments("--disable-dev-shm-usage");
+       ChromeOptions options = new ChromeOptions();
+       options.addArguments("--no-sandbox");
+       options.addArguments("--headless");
+       options.addArguments("--disable-dev-shm-usage");
 
-        driver = new ChromeDriver(/*options*/);
+        driver = new ChromeDriver(options);
 
     }
     @AfterEach
