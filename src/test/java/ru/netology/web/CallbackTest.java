@@ -1,4 +1,5 @@
 package ru.netology.web;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,34 +15,24 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CallbackTest {
-
-
-
     private WebDriver driver;
-
-
-
-
     @BeforeAll
     public static void setupAll() {
         WebDriverManager.chromedriver().setup();
     }
     @BeforeEach
     void setup() {
-       ChromeOptions options = new ChromeOptions();
-       options.addArguments("--no-sandbox");
-       options.addArguments("--headless");
-       options.addArguments("--disable-dev-shm-usage");
-
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        options.addArguments("--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
-
     }
     @AfterEach
     void teardown() {
         driver.quit();
         driver = null;
     }
-
     @Test
     void shouldTestCallback() throws InterruptedException {
         driver.get("http://localhost:9999");
@@ -56,7 +47,6 @@ public class CallbackTest {
 
         // Проверяем, что элемент видим на странице
         assertTrue(successMessageElement.isDisplayed(), "Сообщение об успешной отправке должно быть видимым.");
-
 
         String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         System.out.println(text);
