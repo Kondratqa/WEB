@@ -8,12 +8,25 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class CallbackTest {
+
+
+
     private WebDriver driver;
+
+
+
 
     @BeforeAll
     public static void setupAll() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        options.addArguments("--disable-dev-shm-usage");
+
+
         WebDriverManager.chromedriver().setup();
     }
 
